@@ -1,0 +1,71 @@
+﻿<Window x:Class="PokemonWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PokemonWPF"
+        mc:Ignorable="d"
+        Title="Pokémon" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="AUTO"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="AUTO"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="Datei">
+                <MenuItem Header="Schießen"/>
+            </MenuItem>
+            <MenuItem Header="Optionen">
+                <MenuItem Header="Datenbank"/>
+                <MenuItem Header="Theme">
+                    <MenuItem Header="Light" IsCheckable="True"/>
+                    <MenuItem Header="Dark" IsCheckable="True"/>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <TabControl Grid.Row="1">
+            <TabItem Header="Insert">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Read">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        
+        <StatusBar Grid.Row="2" Background="#aaa">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="100px"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem>
+                <Label Grid.Column="0" Content="Serverstatus:" Height="20px" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StatusBarItem>
+            <StatusBarItem Grid.Column="1">
+                <Image Source="icons/connection/connected_16x16.png" Height="16px"/>
+            </StatusBarItem>
+            <StatusBarItem Grid.Column="3">
+                <ProgressBar Value="59" Width="100px" Height="20px"/>
+            </StatusBarItem>
+        </StatusBar>
+
+    </Grid>
+</Window>

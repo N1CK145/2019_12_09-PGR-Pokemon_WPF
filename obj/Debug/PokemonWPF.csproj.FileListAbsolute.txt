@@ -1,0 +1,15 @@
+C:\Users\nicka\Documents\Schule\AIT21V\PGR\PokemonRestAPI_WPF\2019_12_09-PGR-Pokemon_WPF\bin\Debug\PokemonWPF.exe.config
+C:\Users\nicka\Documents\Schule\AIT21V\PGR\PokemonRestAPI_WPF\2019_12_09-PGR-Pokemon_WPF\bin\Debug\PokemonWPF.exe
+C:\Users\nicka\Documents\Schule\AIT21V\PGR\PokemonRestAPI_WPF\2019_12_09-PGR-Pokemon_WPF\bin\Debug\PokemonWPF.pdb
+C:\Users\nicka\Documents\Schule\AIT21V\PGR\PokemonRestAPI_WPF\2019_12_09-PGR-Pokemon_WPF\obj\Debug\PokemonWPF.csprojAssemblyReference.cache
+C:\Users\nicka\Documents\Schule\AIT21V\PGR\PokemonRestAPI_WPF\2019_12_09-PGR-Pokemon_WPF\obj\Debug\MainWindow.g.cs
+C:\Users\nicka\Documents\Schule\AIT21V\PGR\PokemonRestAPI_WPF\2019_12_09-PGR-Pokemon_WPF\obj\Debug\App.g.cs
+C:\Users\nicka\Documents\Schule\AIT21V\PGR\PokemonRestAPI_WPF\2019_12_09-PGR-Pokemon_WPF\obj\Debug\PokemonWPF_MarkupCompile.cache
+C:\Users\nicka\Documents\Schule\AIT21V\PGR\PokemonRestAPI_WPF\2019_12_09-PGR-Pokemon_WPF\obj\Debug\PokemonWPF_MarkupCompile.lref
+C:\Users\nicka\Documents\Schule\AIT21V\PGR\PokemonRestAPI_WPF\2019_12_09-PGR-Pokemon_WPF\obj\Debug\MainWindow.baml
+C:\Users\nicka\Documents\Schule\AIT21V\PGR\PokemonRestAPI_WPF\2019_12_09-PGR-Pokemon_WPF\obj\Debug\PokemonWPF.g.resources
+C:\Users\nicka\Documents\Schule\AIT21V\PGR\PokemonRestAPI_WPF\2019_12_09-PGR-Pokemon_WPF\obj\Debug\PokemonWPF.Properties.Resources.resources
+C:\Users\nicka\Documents\Schule\AIT21V\PGR\PokemonRestAPI_WPF\2019_12_09-PGR-Pokemon_WPF\obj\Debug\PokemonWPF.csproj.GenerateResource.cache
+C:\Users\nicka\Documents\Schule\AIT21V\PGR\PokemonRestAPI_WPF\2019_12_09-PGR-Pokemon_WPF\obj\Debug\PokemonWPF.csproj.CoreCompileInputs.cache
+C:\Users\nicka\Documents\Schule\AIT21V\PGR\PokemonRestAPI_WPF\2019_12_09-PGR-Pokemon_WPF\obj\Debug\PokemonWPF.exe
+C:\Users\nicka\Documents\Schule\AIT21V\PGR\PokemonRestAPI_WPF\2019_12_09-PGR-Pokemon_WPF\obj\Debug\PokemonWPF.pdb
