@@ -28,21 +28,72 @@
             <TabItem Header="Insert">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100px"/>
+                        <ColumnDefinition Width="5px"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="8px"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Grid.Column="1" Grid.RowSpan="100"/>
+                    <Label Content="Pokemon Name:" Grid.Column="2" Width="Auto"/>
+                    <TextBox HorizontalAlignment="Left" Grid.Column="3" Width="200px" FontSize="16"/>
+                    
+                    <Label Content="Pokemon Type:" Grid.Row="2" Grid.Column="2" Width="Auto"/>
+                    <TextBox HorizontalAlignment="Left" Grid.Row="2" Grid.Column="3" Width="200px" FontSize="16"/>
+
+                    <Label Content="Mehrere Typen mit ';' trennen! Bsp.: 'Feuer; Wasser'" Grid.Column="4" Grid.Row="2"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Read">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Content="Pokemon ID: "/>
+                    <Label Grid.Row="1" Grid.Column="0" Content="Pokemon Name: "/>
+                    <Label Grid.Row="2" Grid.Column="0" Content="Pokemon Type: "/>
+                    <Label Grid.Row="3" Grid.Column="0" Content="Pokemon Damage: "/>
+                    <Label Grid.Row="4" Grid.Column="0" Content="Pokemon Lives: "/>
+                    
+                    <Label Grid.Row="0" Grid.Column="1" Content="0"/>
+                    <Label Grid.Row="1" Grid.Column="1" Content="null"/>
+                    <Label Grid.Row="2" Grid.Column="1" Content="null"/>
+                    <Label Grid.Row="3" Grid.Column="1" Content="0"/>
+                    <Label Grid.Row="4" Grid.Column="1" Content="0"/>
+                    <Grid Grid.Column="0" Grid.Row="99999">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Content="◄"/>
+                        <Button Grid.Column="1" Content="▬"/>
+                        <Button Grid.Column="2" Content="►"/>
+                    </Grid>
                 </Grid>
             </TabItem>
         </TabControl>
-        
+
         <StatusBar Grid.Row="2" Background="#aaa">
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -60,12 +111,11 @@
                 <Label Grid.Column="0" Content="Serverstatus:" Height="20px" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </StatusBarItem>
             <StatusBarItem Grid.Column="1">
-                <Image Source="icons/connection/connected_16x16.png" Height="16px"/>
+                <Image Source="icons/connection/connecting_16x16.png" Height="16px"/>
             </StatusBarItem>
             <StatusBarItem Grid.Column="3">
-                <ProgressBar Value="59" Width="100px" Height="20px"/>
+                <ProgressBar Value="59" Width="100px" Height="20px" Visibility="Hidden"/>
             </StatusBarItem>
         </StatusBar>
-
     </Grid>
 </Window>

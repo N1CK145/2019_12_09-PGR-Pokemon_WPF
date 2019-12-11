@@ -94,8 +94,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="icons\connection\" />
+    <Resource Include="icons\connection\connected_16x16.png" />
+    <Resource Include="icons\connection\connecting_16x16.png" />
+    <Resource Include="icons\connection\disconnected_16x16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
