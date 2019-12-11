@@ -28,7 +28,7 @@
             <TabItem Header="Insert">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100px"/>
+                        <ColumnDefinition Width="200px"/>
                         <ColumnDefinition Width="5px"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
@@ -41,6 +41,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
+                    <TextBlock Name="infoBanner" TextWrapping="Wrap" Grid.RowSpan="999"/>
                     <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Grid.Column="1" Grid.RowSpan="100"/>
                     <Label Content="Pokemon Name:" Grid.Column="2" Width="Auto"/>
                     <TextBox HorizontalAlignment="Left" Grid.Column="3" Width="200px" FontSize="16"/>
@@ -75,20 +76,19 @@
                     <Label Grid.Row="3" Grid.Column="0" Content="Pokemon Damage: "/>
                     <Label Grid.Row="4" Grid.Column="0" Content="Pokemon Lives: "/>
                     
-                    <Label Grid.Row="0" Grid.Column="1" Content="0"/>
-                    <Label Grid.Row="1" Grid.Column="1" Content="null"/>
-                    <Label Grid.Row="2" Grid.Column="1" Content="null"/>
-                    <Label Grid.Row="3" Grid.Column="1" Content="0"/>
-                    <Label Grid.Row="4" Grid.Column="1" Content="0"/>
+                    <Label Name="pokemonID" Grid.Row="0" Grid.Column="1" Content="0"/>
+                    <Label Name="pokemonName" Grid.Row="1" Grid.Column="1" Content="null"/>
+                    <Label Name="pokemonType" Grid.Row="2" Grid.Column="1" Content="null"/>
+                    <Label Name="pokemonDamage" Grid.Row="3" Grid.Column="1" Content="0"/>
+                    <Label Name="pokemonLives" Grid.Row="4" Grid.Column="1" Content="0"/>
                     <Grid Grid.Column="0" Grid.Row="99999">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Content="◄"/>
-                        <Button Grid.Column="1" Content="▬"/>
-                        <Button Grid.Column="2" Content="►"/>
+
+                        <Button Name="previousDataSet" Grid.Column="0" Content="◄" Click="previousDataSet_Click" FontSize="20"/>
+                        <Button Name="nextDataSet" Grid.Column="2" Content="►" Click="nextDataSet_Click" FontSize="20"/>
                     </Grid>
                 </Grid>
             </TabItem>
@@ -101,20 +101,19 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="100px"/>
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                     </Grid>
                 </ItemsPanelTemplate>
             </StatusBar.ItemsPanel>
             <StatusBarItem>
-                <Label Grid.Column="0" Content="Serverstatus:" Height="20px" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Grid.Column="0" Content="Serverstatus:" Height="20px" Padding="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
             </StatusBarItem>
             <StatusBarItem Grid.Column="1">
-                <Image Source="icons/connection/connecting_16x16.png" Height="16px"/>
+                <Image Name="imageConnectionStatus" Source="icons/connection/connecting_16x16.png" Height="16px"/>
             </StatusBarItem>
             <StatusBarItem Grid.Column="3">
-                <ProgressBar Value="59" Width="100px" Height="20px" Visibility="Hidden"/>
+                <Label Name="responseCode" Content="Response Code: null"/>
             </StatusBarItem>
         </StatusBar>
     </Grid>
