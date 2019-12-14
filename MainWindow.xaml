@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PokemonWPF"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"        
         mc:Ignorable="d"
         Title="Pokémon" Height="450" Width="800">
     <Grid>
@@ -49,7 +49,7 @@
                     <Label Content="Pokemon Type:" Grid.Row="2" Grid.Column="2" Width="Auto"/>
                     <TextBox HorizontalAlignment="Left" Grid.Row="2" Grid.Column="3" Width="200px" FontSize="16"/>
 
-                    <Label Content="Mehrere Typen mit ';' trennen! Bsp.: 'Feuer; Wasser'" Grid.Column="4" Grid.Row="2"/>
+                    <TextBlock Text="Mehrere Typen mit ';' trennen! Bsp.: 'Feuer; Wasser'" TextWrapping="WrapWithOverflow" Grid.Column="4" Grid.Row="2"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Read">
@@ -70,17 +70,19 @@
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0" Grid.Column="0" Content="Pokemon ID: "/>
-                    <Label Grid.Row="1" Grid.Column="0" Content="Pokemon Name: "/>
-                    <Label Grid.Row="2" Grid.Column="0" Content="Pokemon Type: "/>
-                    <Label Grid.Row="3" Grid.Column="0" Content="Pokemon Damage: "/>
-                    <Label Grid.Row="4" Grid.Column="0" Content="Pokemon Lives: "/>
+                    <Image Grid.Column="0" Grid.Row="0" Name="pokemonImage" gif:ImageBehavior.AnimatedSource="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" Height="100px" Width="100px"/>
+
+                    <Label Grid.Row="1" Grid.Column="0" Content="Pokemon ID: "/>
+                    <Label Grid.Row="2" Grid.Column="0" Content="Pokemon Name: "/>
+                    <Label Grid.Row="3" Grid.Column="0" Content="Pokemon Type: "/>
+                    <Label Grid.Row="4" Grid.Column="0" Content="Pokemon Damage: "/>
+                    <Label Grid.Row="5" Grid.Column="0" Content="Pokemon Lives: "/>
                     
-                    <Label Name="pokemonID" Grid.Row="0" Grid.Column="1" Content="0"/>
-                    <Label Name="pokemonName" Grid.Row="1" Grid.Column="1" Content="null"/>
-                    <Label Name="pokemonType" Grid.Row="2" Grid.Column="1" Content="null"/>
-                    <Label Name="pokemonDamage" Grid.Row="3" Grid.Column="1" Content="0"/>
-                    <Label Name="pokemonLives" Grid.Row="4" Grid.Column="1" Content="0"/>
+                    <Label Name="pokemonID" Grid.Row="1" Grid.Column="1" Content="0"/>
+                    <Label Name="pokemonName" Grid.Row="2" Grid.Column="1" Content="null"/>
+                    <Label Name="pokemonType" Grid.Row="3" Grid.Column="1" Content="null"/>
+                    <Label Name="pokemonDamage" Grid.Row="4" Grid.Column="1" Content="0"/>
+                    <Label Name="pokemonLives" Grid.Row="5" Grid.Column="1" Content="0"/>
                     <Grid Grid.Column="0" Grid.Row="99999">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -100,6 +102,7 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
@@ -112,7 +115,10 @@
             <StatusBarItem Grid.Column="1">
                 <Image Name="imageConnectionStatus" Source="icons/connection/connecting_16x16.png" Height="16px"/>
             </StatusBarItem>
-            <StatusBarItem Grid.Column="3">
+            <StatusBarItem Grid.Column="2">
+                <Label Name="liveLogger"/>
+            </StatusBarItem>
+            <StatusBarItem Grid.Column="4">
                 <Label Name="responseCode" Content="Response Code: null"/>
             </StatusBarItem>
         </StatusBar>
