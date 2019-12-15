@@ -4,12 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace PokemonWPF
 {
     class Logger
     {
-        string path = "";
+        private string path = "";
         public Logger(string savePath, string saveFile)
         {
             if (!savePath.EndsWith("\\") && !savePath.EndsWith("/"))
@@ -25,19 +26,31 @@ namespace PokemonWPF
         {
             String dateTime = DateTime.Now.ToString("H:mm:ss");
             String message = "[" + dateTime + "] INFO: " + logMessage;
+            Label liveLogger = MainWindow.mainWindow.liveLogger;
+
+            liveLogger.Dispatcher.Invoke(new Action(() => liveLogger.Content = logMessage));
+
             using (StreamWriter writer = new StreamWriter(path, true))
             {
                 writer.WriteLine(message);
             }
         }
+
         public void Error(string logMessage)
         {
-            String dateTime = DateTime.Now.ToString("H:mm:ss");
-            String message = "[" + dateTime + "] ERROR: " + logMessage;
-            using (StreamWriter writer = new StreamWriter(path, true))
+            try
             {
-                writer.WriteLine(message);
-                writer.Flush();
+                String dateTime = DateTime.Now.ToString("H:mm:ss");
+                String message = "[" + dateTime + "] ERROR: " + logMessage;
+                using (StreamWriter writer = new StreamWriter(path, true))
+                {
+                    writer.WriteLine(message);
+                    writer.Flush();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message + "\n" +  e.StackTrace);
             }
         }
     }

@@ -11,6 +11,8 @@ using System.Runtime.Serialization;
 using System.Windows.Media.Imaging;
 using Newtonsoft.Json.Linq;
 using System.Threading;
+using System.Windows.Documents;
+using System.Diagnostics;
 
 namespace PokemonWPF
 {
@@ -19,46 +21,49 @@ namespace PokemonWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static MainWindow mainWindow;
         private Logger logger = new Logger(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\.pokemon\logs\", "%date%.log");
         private string requestURL = "https://localhost:44330/api/pokemon";
-        private JArray requestJsonArray;
+        public JArray RequestJsonArray;
         private bool upToDate = false;
 
         public MainWindow()
         {
+            mainWindow = this;
             try
             {
+                InitializeComponent();
                 logger.Log("---------------------------------------------------");
                 logger.Log("Initialize Componets...");
-                InitializeComponent();
 
                 initData();
-                infoBanner.Text = "URL: " + requestURL;
+                infoBanner.Text = "RequestURL: " + requestURL;
             }
             catch (Exception e)
-            { logger.Error(e.StackTrace); }
+            { logger.Error(e.Message + "\n" + e.StackTrace); }
         }
 
         public void initData()
         {
             int defaultPkmn = 1;
             logger.Log("Getting json from \"" + requestURL + "\"");
-            requestJsonArray = makeRequest(requestURL);
+            RequestJsonArray = makeRequest(requestURL);
 
-            new Thread(() => DownloadImages(requestJsonArray)).Start();
+            new Thread(() => DownloadImages(RequestJsonArray)).Start();
 
-            bool finnish = false;
-            while(!finnish || liveLogger.Content == null)
+            if(!upToDate)
             {
-                foreach(JObject jsonItem in requestJsonArray)
+                foreach(JObject jsonItem in RequestJsonArray)
                 {
                     if (jsonItem.Value<int>("number") == defaultPkmn)
-                        while (liveLogger.Content.ToString() == jsonItem.Value<String>("sprite")) { Thread.Sleep(50); }
+                    {
+                        while (liveLogger.Content.ToString() == jsonItem["sprite"].ToString()) { Thread.Sleep(10); }
+                        break;
+                    }
                 }
-                break;
             }
 
-            setPokemonData(defaultPkmn, requestJsonArray);
+            SetPokemonData(defaultPkmn, RequestJsonArray);
         }
 
         public void DownloadImages(JArray jsonArray)
@@ -75,17 +80,21 @@ namespace PokemonWPF
                 {
                     string link = json["sprite"].ToString();
                     string fileName = link.Split('/').Last<String>();
+                    if (File.Exists(savePath + fileName))
+                    {
+                        logger.Log("File \"" + savePath + fileName + "\" already exists. Skipping download!");
+                        continue;
+                    }
 
                     logger.Log("Downloading image: \"" + json["sprite"] + "\"");
                     if (!WebDownloader.Download(link, savePath + fileName))
                         MessageBox.Show("ERROR:\n\nFileNotFound: " + link);
-                    liveLogger.Dispatcher.Invoke(new Action(() => liveLogger.Content = "Downloading: " + link));
                 }
             }
-            // liveLogger.Dispatcher.Invoke(new Action(() => liveLogger.Content = "Done..."));
+            logger.Log("Done!");
         }
 
-        private void setPokemonData(int id, JArray requestJsonArray)
+        public void SetPokemonData(int id, JArray requestJsonArray)
         {
             if (requestJsonArray == null)
                 return;
@@ -94,11 +103,15 @@ namespace PokemonWPF
             {
                 if(json["number"].ToString() == id.ToString())
                 {
-                    logger.Log("Show pokemon number " + json["number"].ToString());
+                    logger.Log("Show pokemon " + json["number"].ToString() + " (" + json["pokemon"].ToString() + ")");
+
                     string filePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/.pokemon/images/pokemon/";
                     string fileName = json["sprite"].ToString().Split('/').Last<String>();
 
                     pokemonImage.Source = new BitmapImage(new Uri(filePath + fileName, UriKind.Absolute));
+                    pokemonImage.ToolTip = json["sprite"].ToString();
+                    pokemonImageLink.NavigateUri = new Uri(json["sprite"].ToString(), UriKind.Absolute);
+
                     pokemonID.Content = json["number"];
                     pokemonName.Content = json["pokemon"];
                     if(json["type2"].ToString() == "none")
@@ -145,12 +158,32 @@ namespace PokemonWPF
 
         private void previousDataSet_Click(object sender, RoutedEventArgs e)
         {
-            setPokemonData(Int32.Parse(pokemonID.Content.ToString()) - 1, requestJsonArray);
+            SetPokemonData(Int32.Parse(pokemonID.Content.ToString()) - 1, RequestJsonArray);
         }
 
         private void nextDataSet_Click(object sender, RoutedEventArgs e)
         {
-            setPokemonData(Int32.Parse(pokemonID.Content.ToString()) + 1, requestJsonArray);
+            SetPokemonData(Int32.Parse(pokemonID.Content.ToString()) + 1, RequestJsonArray);
+        }
+
+        private void PokemonImageLink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        {
+            // Start Link in Browser
+            Hyperlink hl = (Hyperlink)sender;
+            string navigateUri = hl.NavigateUri.ToString();
+            Process.Start(new ProcessStartInfo(navigateUri));
+            e.Handled = true;
+        }
+
+        private void SearchDataSet_Click(object sender, RoutedEventArgs e)
+        {
+            Window w = new SearchWindow(this);
+            w.Show();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            initData();
         }
     }
 }
